@@ -1,15 +1,19 @@
-# Todo
+todo: write a proper readme file
 
-Overview of project
-  scheduling problem
-  MIP 
-  Gnu mathprog
+# Overview of project
+ + general description of scheduling problem
+ + theoretical description
+   - MIP 
+   - Gnu Mathprog
+ + usage
+   -stucutre of data files
 
-project layout
-  the different models
-  What data files they expect
+# project layout
+  - content of src
+  - example data file?
+  - test cases?
 
-Example usage
+# Example
   
   
 
