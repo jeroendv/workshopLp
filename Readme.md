@@ -6,7 +6,7 @@ todo: write a proper readme file
    - MIP 
    - Gnu Mathprog
  + usage
-   -stucutre of data files
+   - stucutre of data files
 
 # project layout
   - content of src
