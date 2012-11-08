@@ -1,0 +1,166 @@
+model:
+
+! problem description
+!   6 werkwinkels, 2 beurten, de 10 staat voor het max aantal deelnemers. Een 0 wil
+!   zeggen dat die werkwinkel niet doorgaat in die beurt
+!   WW
+!   A: 10,10
+!   B: 10,10
+!   C: 0,10
+!   D: 0,10
+!   E: 10,10
+!   F: 10,10
+!
+!   3 deelnemers, met hun 1e, 2e en reservekeuze
+!   DEELNEMERS
+!   DLNMR 1
+!   Keuzes: B, A, F
+!   DLNMR 2
+!   Keuzes: B, D, E
+!   DLNMR 3
+!   Keuzes: C, E, A
+!;
+
+
+sets:
+    person/1..3/;
+    session/1..2/;
+    shop/1..6/;
+    
+    ! preferred(w,p) = 1 if a person p chooses a certain shop w
+    ! preferred(w,p) = 0 if a person p does not choose a shop w
+    !
+    ! reserve(w,p) = 1 if a person p chooses a certain shop w as reserve
+    ! reserve(w,p) = 0 if a person p does not choose a shop w as reserve
+    !;
+    Choice(shop,person): preferred, reserve;
+
+    ! assign(w,s,p) = 1: assign person p to shop w in session s
+    ! assign(w,s,p) = 0: do not assign person p to shop w in session s
+    !;
+    Assignments(shop,session,person):assign;
+
+    ! capacity(w,s): the capacity of each session s of a shop w
+    ! assigned(w,s): the number of people assigned to session s of shop w
+    ! overbooked(w,s): the number of people assigned to a session s of shop w
+    !                  beyond its official capcity
+    !;
+    Workshops(shop,session):capacity,assigned,overbooked;
+
+endsets
+
+
+
+data:
+    !  session= 1,  2;
+    capacity = 1, 1     !A;
+               1, 0     !B;
+               0, 1     !C;
+               0, 1     !D;
+               0, 0     !E;
+               0, 0;    !F;
+
+    ! person    1, 2, 3;
+    preferred = 1, 0, 0     !A;
+                1, 1, 0     !B;
+                0, 0, 1     !C;
+                0, 1, 0     !D;
+                0, 0, 1     !E;
+                0, 0, 0;    !F;
+
+    ! person    1, 2, 3;
+    reserve   = 0, 0, 1     !A;
+                0, 0, 0     !B;
+                0, 0, 0     !C;
+                0, 0, 0     !D;
+                0, 1, 0     !E;
+                1, 0, 0;    !F;
+
+    !cost associated with selecting a reserve choice;
+    ReserveChoiceCost = 1;
+
+    !cost associated with overbooking a session
+    !i.e. the solver would rather assign 9 people to a reserve choice instead
+    !of overbooking a session with 1 person.
+    !;
+    OverbookingCost = 10;
+end data
+
+!=============================================================================;
+! goal function
+!=============================================================================;
+
+! minimize the cost of reserve choises and overbookings
+!;
+min =   @sum(Assignments(w,s,p):
+            assign(w,s,p)*reserve(w,p)*ReserveChoiceCost;
+        ) +
+        @sum( Workshops(w,s):
+            overbooked(w,s)*OverbookingCost
+        );
+
+
+
+
+!=============================================================================;
+! constaints
+!=============================================================================;
+
+! each person p should be assigned to N(p) sessions
+! where N(p) is the number of preferred choices
+!;
+@for(person(p): [required]
+    @sum(shop(w): preferred(w,p))
+     =
+    @sum(shop(w):
+        @sum(session(s):
+            assign(w,s,p)
+        )
+    )
+);
+
+
+
+
+! shops that aren't choosen by a person can't be assigned!;
+@for( Assignments(w,s,p):
+    assign(w,s,p)*(preferred(w,p) + reserve(w,p) -1 )  = 0
+);
+
+
+
+
+! A person can only follow a shop once
+! no point in following a shop for several sessions
+!;
+@for(person(p): 
+@for(shop(w): [followOnce]
+    @sum(session(s):
+        assign(w,s,p)
+    ) <= 1
+));
+
+
+
+!compute the number of people assigned to a shop w in session s;
+@for( Workshops(w,s): [N]
+    assigned(w,s) = @sum(person(p):assign(w,s,p))
+);
+
+! compute the with how much people a session is overbooked;
+@for( Workshops(w,s): [cap]
+    overbooked(w,s) >=  -capacity(w,s) + assigned(w,s)
+);
+
+@for(Workshops: overbooked >= 0);
+
+
+
+! assignment is binairy variable;
+@for(Assignments(w,s,p):@bin(assign(w,s,p)));
+
+
+
+end
+
+
