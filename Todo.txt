@@ -1,1 +1,34 @@
 # todo: replace all LP model instances with MILP instances!
+
+# todo: ensure that parameters have default values.
+# This way new models that contain extra parameters can still be used in 
+# conjunction with older data files. The problem is that the older data 
+# files don't assign anything to those extra parameters because they 
+# weren't known about at the time the data file was generated.  
+
+# wishlist: gnumathprog extension file inclusion and overloading.
+# At the moment I have a problem that the model.<x+1> is only a small 
+# change compared to model.<x>. Lots of code is very similar and hence 
+# proper coding demands that you seperate the code to a seperate file or 
+# location and reuse it, so that there is no code duplication. 
+#
+# gnu mathprog doesn't have a sort of include direction  or import 
+# statement or something similar to include a file in an other file.
+#
+# an other problem is that inclusion is not always enough, sometimes you 
+# don't only add constrains  but also change them ever so slightly. So 
+# you also need some kind of overloading concept where a newer 
+# constraints replaces an older contraint of identical name.
+#
+# These tho concepts would allow me to reuse common contraints  the way 
+# it should, i.e., by importing instead of copy pasting.
+# Maintianing would also be much easier!!
+#
+# an include directive could easily enough be done with a perl script!
+# The overloading concept would be much harder though because it 
+# requires that the model is properly interpreted and an in memory 
+# representation should be build and then printed, while an include 
+# directive would simply print lines without any knowledge of the 
+# content of those lines a part of the ability to recognize an the 
+# include directive itself.
+#
