@@ -5,7 +5,7 @@ todo: write a proper readme file
 Given a number of courses each organized once or multiple times in a
 number of sessions. For each session a course has a specific capacity
 depending on its location. Also given is a group of people that have
-listed which courses they are interested in and would like hence like to
+listed which courses they are interested in and hence would like to
 go to a session of that specific course.
 
 Hence we need to assign people to specific courses in specific sessions in some
