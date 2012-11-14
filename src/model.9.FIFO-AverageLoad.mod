@@ -161,6 +161,9 @@ SessionLoadDifferencesAbs2{w in W}:
 # it can't be both the first and second choice.
 check{w in W, p in P} : preferred[w,p] + reserve[w,p] <=1;
 
+#todo: explicitly check if that there are 2 sessions. This model wont' work 
+# properly otherwise
+
 
 
 #==============================================================================
