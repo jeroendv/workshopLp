@@ -48,3 +48,9 @@
 # todo: copy the default value of for OverbookingsCost in model.9 to
 # the other models
 
+# todo: provide test/test1 with some info to make it usefull
+# + set a Readme.md in the test/test1 directory.
+#  * what is imporant about the test
+#  * what should be tested
+#  * what do we want to illustrate with
+# + create a bash script to run the test and 
