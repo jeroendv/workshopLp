@@ -67,13 +67,23 @@ param N{p in P} >= 0, := sum{w in W} preferred[w,p];
 #NbReserveChoices is the largest number of reserve choices for any person
 param NbReserveChoices := max{p in P} sum{w in W} reserve[w,p];
 
-# There are three main goal function paramters.
+## There are three main goal function paramters.
 #  + a scale factor of a reserve choice cost function
-#  + the cost of an overbooking.
-#  + a cost associated with an uneven distribution of session participants
 param ReserveChoiceCost, default 1;
+#  + the cost of an overbooking.
+#  The default value is choosen so that it's always >=1
+#  and large enough to prevent overbooking that can be avoided using reserve 
+#  choices. I.e. the cost of an overbooking should be larger then the cost of 
+#  the reserve choices.
 param OverbookingCost,
-  default NbReserveChoices * NbPeople * (max {i in {1, ReserveChoiceCost}} i);
+  default max {
+    i in {
+      1,
+      NbReserveChoices*NbPeople*ReserveChoiceCost
+    }
+  } i;
+
+#  + a cost associated with an uneven distribution of session participants
 param UnbalancedLoadCost, default 1;
 
 
