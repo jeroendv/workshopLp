@@ -54,3 +54,6 @@
 #  * what should be tested
 #  * what do we want to illustrate with
 # + create a bash script to run the test and 
+
+# todo: can it be that a time limit results in an infeasible solution?
+# If so than I need to explicitly check the solution afterwards!?
