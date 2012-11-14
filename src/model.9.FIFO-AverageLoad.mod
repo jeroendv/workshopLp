@@ -67,6 +67,10 @@ param OverbookingCost;
 # N(p) is the number of preferred choices for person p
 param N{p in P} >= 0, := sum{w in W} preferred[w,p];
 
+param UnbalancedLoadCost, default 1;
+
+
+
 #==============================================================================
 # the decision variables of the problem
 #==============================================================================
@@ -102,7 +106,7 @@ minimize obj:
   + sum{w in W, s in S}
 		overbooked[w,s]*OverbookingCost 
   + sum{w in W}
-    SessionLoadDifference[w]*1;
+    SessionLoadDifference[w]*UnbalancedLoadCost;
 
 
 #==============================================================================
