@@ -32,3 +32,19 @@
 # content of those lines a part of the ability to recognize an the 
 # include directive itself.
 #
+
+# todo: make later model backward compatible with earlier models by
+# giving newly introduced parameters a default value, so that they can
+# process data files intended for earlier model description.
+# todo: make earlier model forward compatible by declaring the
+# parameters that they don't use, but thus ensuring that they can solve
+# data files intended for later model files. (the import directive and
+# overloading capability would make maintining all these models so much
+# easier!!)
+
+# todo: use the ReserveChoiceCost parameter to scale the reserve choice
+# cost. It is done in some models, but not in all.
+
+# todo: copy the default value of for OverbookingsCost in model.9 to
+# the other models
+
