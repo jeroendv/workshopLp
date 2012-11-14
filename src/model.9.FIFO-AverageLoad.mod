@@ -98,7 +98,7 @@ var SessionLoadDifference{w in W} >= 0;
 # minimize the cost of reserve choices and overbookings
 minimize obj:
 	sum{w in W, s in S, p in P}
-    assign[w,s,p]*reserve[w,p]*(NbPeople-p)
+    assign[w,s,p]*reserve[w,p]*(NbPeople-p)*ReserveChoiceCost
   + sum{w in W, s in S}
 		overbooked[w,s]*OverbookingCost 
   + sum{w in W}
