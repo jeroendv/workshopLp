@@ -61,6 +61,7 @@ param preferred{w in W, p in P} binary, default 0;
 param reserve{w in W, p in P} binary, default 0;
 
 # N(p) is the number of preferred choices for person p
+# it is the number of workshops that the person will be assinged to.
 param N{p in P} >= 0, := sum{w in W} preferred[w,p];
 
 #NbReserveChoices is the largest number of reserve choices for any person
@@ -80,8 +81,8 @@ param UnbalancedLoadCost, default 1;
 #==============================================================================
 # the decision variables of the problem
 #==============================================================================
-
-# the primary variables if the assignment matrix!
+# the primary variable is the assignment matrix!
+# All others are derived from this.
 # 	assign(w,s,p) = 1: assign person p to shop w in session s
 # 	assign(w,s,p) = 0: do not assign person p to shop w in session s
 var assign{w in W, s in S, p in P} binary, >= 0, <=1;
