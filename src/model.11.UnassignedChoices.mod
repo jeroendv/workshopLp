@@ -22,6 +22,9 @@
 ## History
 # based on model.10 but extended to allow a person to not be assigned.
 #
+# This model should *never* be infeasible as every constraint has a slack 
+# variable that is somehow minimized.
+#
 #
 # By having a very hight cost associated with unassigned people, will results 
 # in the model to disfavor that option unless it's really necessary. For 
