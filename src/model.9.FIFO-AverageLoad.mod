@@ -179,6 +179,8 @@ printf: 'objective value: %30.20e\n\n', obj.val;
 # print stats on the nb of assignments
 param NbExpectedAssignments := sum{w in W, p in P} preferred[w,p];
 printf: 'NbExpectedAssignments: %5i\n', NbExpectedAssignments ;
+param TotalCapacity := sum{w in W, s in S} Capacity[w,s];
+printf: 'total Capacity: %5i\n', TotalCapacity;
 
 param UnassignedFirstChoiceTotal :=
 	sum{w in W, p in P: preferred[w,p] = 1 and sum{s in S}assign[w,s,p] != 1} 1;
