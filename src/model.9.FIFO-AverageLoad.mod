@@ -60,13 +60,19 @@ param Capacity{w in W, s in S} integer, default 0, >= 0;
 param preferred{w in W, p in P} binary, default 0;
 param reserve{w in W, p in P} binary, default 0;
 
-param ReserveChoiceCost;
-param OverbookingCost;
-
-
 # N(p) is the number of preferred choices for person p
 param N{p in P} >= 0, := sum{w in W} preferred[w,p];
 
+#NbReserveChoices is the largest number of reserve choices for any person
+param NbReserveChoices := max{p in P} sum{w in W} reserve[w,p];
+
+# There are three main goal function paramters.
+#  + a scale factor of a reserve choice cost function
+#  + the cost of an overbooking.
+#  + a cost associated with an uneven distribution of session participants
+param ReserveChoiceCost, default 1;
+param OverbookingCost,
+  default NbReserveChoices * NbPeople * (max {i in {1, ReserveChoiceCost}} i);
 param UnbalancedLoadCost, default 1;
 
 
@@ -161,6 +167,8 @@ check{w in W, p in P} : preferred[w,p] + reserve[w,p] <=1;
 #==============================================================================
 
 solve;
+printf: 'NbReserveChoices = %i\n\n', NbReserveChoices;
+printf: 'OverbookingCost = %i\n\n', OverbookingCost;
 
 printf: 'objective value: %30.20e\n\n', obj.val;
 
