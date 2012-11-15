@@ -4,9 +4,9 @@ data;
 param NbPeople 		:=361;
 param NbWorkshops 	:=12;
 param NbSessions 	:=2;
-param ReserveChoiceCost := 1;
-param UnbalancedLoadCost := 5;
-param OverbookingCost 	:= 400;
+param ReserveChoiceCost := 0;
+param UnbalancedLoadCost := 0;
+param OverbookingCost 	:= 1;
 param Capacity :=
 [1,1] 20
 [1,2] 20
