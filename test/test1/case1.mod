@@ -230,4 +230,4 @@ for {w in W}{
 end;
 
 
-# vim: ft=sh : fo=caqwnr
+# vim: fo=caqwnr
