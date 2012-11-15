@@ -57,3 +57,8 @@
 
 # todo: can it be that a time limit results in an infeasible solution?
 # If so than I need to explicitly check the solution afterwards!?
+
+# todo: post processing in a different file(2012/11/15)
+# can't post processing be done in a file seperate from the model
+# description. Depending on the goal one would like to reuse a model
+# desctription but do different post processing on the results!!!
