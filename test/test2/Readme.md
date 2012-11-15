@@ -16,6 +16,28 @@ respectively 1 and 5 second. This time limit is to short. In both cases
 the returned solution has a all zero assignment matrix which is'n even
 feasible. I.e. the returned solution is simply *Wrong*!!
 
+
+    Time used:   1.4 secs
+    Memory used: 13.7 Mb (14383150 bytes)
+
+    overbooked sessions, total: 0 
+    --------------------------
+
+    number of particpants of each workshop and session
+    workshop   1:   0,   0,
+    workshop   2:   0,   0,
+    workshop   3:   0,   0,
+    workshop   4:   0,   0,
+    workshop   5:   0,   0,
+    workshop   6:   0,   0,
+    workshop   7:   0,   0,
+    workshop   8:   0,   0,
+    workshop   9:   0,   0,
+    workshop  10:   0,   0,
+    workshop  11:   0,   0,
+    workshop  12:   0,   0,
+    Model has been successfully processed
+
 In this case it is fairly obvious to see that the returned solution is
 wrong because nobody is assigned to anything. It is however conceivable
 that the solver would return a solution that seems to correspond to a
@@ -30,14 +52,86 @@ The danger of choosing to large a time limit would be that you might be
 waiting unnecessarily long for a solution that was found fairly quickly.
 
 In case 3 for example the solver reports a solution after 10 second that
-seems ok.  Remember though that I haven't explicitly checked if this
+seems ok as can be seen in the next extract of its output
+  
+    TIME LIMIT EXCEEDED; SEARCH TERMINATED
+    Time used:   10.4 secs
+    Memory used: 13.7 Mb (14383150 bytes)
+
+
+    overbooked sessions, total: 100 
+    --------------------------
+    workshop 1, session 1: amount 15
+    workshop 1, session 2: amount 15
+    workshop 5, session 1: amount 7
+    workshop 5, session 2: amount 7
+    workshop 8, session 1: amount 1
+    workshop 8, session 2: amount 1
+    workshop 10, session 2: amount 25
+    workshop 12, session 1: amount 14
+    workshop 12, session 2: amount 15
+
+    number of particpants of each workshop and session
+    workshop   1:  35,  35,
+    workshop   2:  14,  13,
+    workshop   3:  25,  25,
+    workshop   4:  43,  43,
+    workshop   5:  32,  32,
+    workshop   6:  33,  33,
+    workshop   7:  29,  29,
+    workshop   8:  31,  31,
+    workshop   9:  35,  35,
+    workshop  10:  25,  25,
+    workshop  11:  25,  25,
+    workshop  12:  34,  35,
+    Model has been successfully processed
+
+Remember though that I haven't explicitly checked if this
 solution is feasible!
 
 In case 4 the solver runs for 30 seconds instead of 10 without any
-noticeable improvements. The number of overbooked people remains
-unchanged. And the load in each session is identical. This indicates
-that case 4 spended 20 extra second to improve the solution without
-success. Meaning that you waited in vain for 20 extra second.
+improvements. The number of overbooked people remains unchanged. And the
+load in each session is identical. This can be seen in its extract of
+the solution.
+
+
+    TIME LIMIT EXCEEDED; SEARCH TERMINATED
+    Time used:   30.4 secs
+    Memory used: 15.2 Mb (15936169 bytes)
+
+    overbooked sessions, total: 100 
+    --------------------------
+    workshop 1, session 1: amount 15
+    workshop 1, session 2: amount 15
+    workshop 5, session 1: amount 7
+    workshop 5, session 2: amount 7
+    workshop 8, session 1: amount 1
+    workshop 8, session 2: amount 1
+    workshop 10, session 2: amount 25
+    workshop 12, session 1: amount 14
+    workshop 12, session 2: amount 15
+
+    number of particpants of each workshop and session
+    workshop   1:  35,  35,
+    workshop   2:  14,  13,
+    workshop   3:  25,  25,
+    workshop   4:  43,  43,
+    workshop   5:  32,  32,
+    workshop   6:  33,  33,
+    workshop   7:  29,  29,
+    workshop   8:  31,  31,
+    workshop   9:  35,  35,
+    workshop  10:  25,  25,
+    workshop  11:  25,  25,
+    workshop  12:  34,  35,
+    Model has been successfully processed
+
+When inspecting the actual solutions, output3.txt and output4.txt it
+turns out that the solution of case 3 and case 4 are in fact identical!!
+
+This means that case 4 spended 20 extra second to improve the
+solution without success. Meaning that you waited in vain for 20 extra
+second.
 
 
 
