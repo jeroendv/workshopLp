@@ -7,6 +7,9 @@ The open question that we can't answer at the moment is:
 
     How to choose a reasonable time limit?
 
+Note: Run *make* to run do run the test yourself, and *make clean* to clean
+up afterwards.
+
 # Dangers of to short time limits
 
 To short a time limit can result in an infeasible solution!
