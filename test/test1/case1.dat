@@ -1,3 +1,5 @@
+# vim: syntax=bash
+
 data;
 param NbPeople 		:=361;
 param NbWorkshops 	:=12;
