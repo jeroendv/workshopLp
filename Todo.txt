@@ -62,3 +62,16 @@
 # can't post processing be done in a file seperate from the model
 # description. Depending on the goal one would like to reuse a model
 # desctription but do different post processing on the results!!!
+#
+# The most promimant example would be in test/testx/
+
+# todo: only generate constraints if needed (2012/11/15)
+# if a parameter is set to zero making certain constraint meaningless,
+# then I also shouldn't generate those constraints!! 
+#
+# For example if UnbalancedLoadCost == 0, then the goal function won't
+# be affected by an unbalance. The preprocessing step won't however
+# notice this and won't eliminate the constraints related to
+# balancing. Hence the model will have unneeded constraints which will
+# unnecessarily slow down the solver.
+
