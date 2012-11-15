@@ -34,10 +34,10 @@ seems ok.  Remember though that I haven't explicitly checked if this
 solution is feasible!
 
 In case 4 the solver runs for 30 seconds instead of 10 without any
-noticeable improvements, i.e.,  the number of overbooked people remains
-unchanged.  Indicating that case 4 spended 20 extra second to improve
-the solution without success. Meaning that you waited 20 extra second in
-vain.
+noticeable improvements. The number of overbooked people remains
+unchanged. And the load in each session is identical. This indicates
+that case 4 spended 20 extra second to improve the solution without
+success. Meaning that you waited in vain for 20 extra second.
 
 
 
