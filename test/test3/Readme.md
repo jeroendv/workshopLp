@@ -45,6 +45,7 @@ Notice how the pre-process step reduces the model from 14152 constraints
 and 8724 variables to 2225 constraints and 2213 variables.
 
 ### case2.sh
+
 case2.dat describes the same problem but now all but the overbooking 
 costs are set to zero.
 
@@ -53,11 +54,9 @@ costs are set to zero.
     param OverbookingCost 	 := 1;
 
 This will have the effect that the model will minimize the total number 
-of people that are overbooked. This also means that constraints intended 
-to compute derived results that are now irrelevant are no longer needed.
-But the pre-process step might fail to automatically eliminate those.
+of people that are overbooked.
 
-Indeed running the same model on case2.dat gives:
+Running the same model on case2.dat gives:
 
   $ bash case2.sh
     ...
@@ -72,7 +71,24 @@ Indeed running the same model on case2.dat gives:
     ...
 
 Note how the problem has the same number of constraints and variables 
-both before and after the pre-processing. 
+both before and after the pre-processing as in case 1!
+
+The model that we are using however includes some constraints 
+responsible for computing the SessionLoadDifference variable, which is a 
+derived results that is no longer needed because the cost associated 
+with an unbalance is set to zero in this particular case. Hence we can 
+conclude that the pre-process step failed to eliminate those 
+constraints.
+
+
+### case3.sh
+
+ + modified model => less constraints
+ + note time difference! (hard to predict though)
+
+
+
+
 
 
 
