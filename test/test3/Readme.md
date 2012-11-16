@@ -58,7 +58,7 @@ of people that are overbooked.
 
 Running the same model on case2.dat gives:
 
-  $ bash case2.sh
+    $ bash case2.sh
     ...
     Model has been successfully generated
     GLPK Integer Optimizer, v4.45
