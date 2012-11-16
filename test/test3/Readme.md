@@ -39,7 +39,14 @@ following model stats:
     2166 integer variables, all of which are binary
     ...
         
+Notice how the pre-process step reduces the model from 14152 constraints 
+and 8724 variables to 2225 constraints and 2213 variables.
 
+case2.dat describes the same problem but now all but the overbooking 
+costs are set to zero.
 
+    param ReserveChoiceCost  := 0;
+    param UnbalancedLoadCost := 0;
+    param OverbookingCost 	 := 1;
 
  vim: fo=awqn
