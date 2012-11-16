@@ -64,7 +64,11 @@ people need to be overbooked to have a feasible solution.
     Model has been successfully processed
 
 
-
+#todo :complete this readme
+ + large enough overbookings cost to prefer reserve choices over
+overbookings (use default value)
+ + effect of overbookings cost to allow overbookings for early
+   subscribers and not for the later ones.
 
 
 
