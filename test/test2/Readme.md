@@ -90,44 +90,15 @@ seems ok as can be seen in the next extract of its output
     Model has been successfully processed
 
 Remember though that I haven't explicitly checked if this
-solution is feasible!
+solution is actually feasible!
 
 In case 4 the solver runs for 30 seconds instead of 10 without any
-improvements. The number of overbooked people remains unchanged. And the
-load in each session is identical. This can be seen in its extract of
-the solution.
-
+improvements. 
 
     TIME LIMIT EXCEEDED; SEARCH TERMINATED
     Time used:   30.4 secs
     Memory used: 15.2 Mb (15936169 bytes)
 
-    overbooked sessions, total: 100 
-    --------------------------
-    workshop 1, session 1: amount 15
-    workshop 1, session 2: amount 15
-    workshop 5, session 1: amount 7
-    workshop 5, session 2: amount 7
-    workshop 8, session 1: amount 1
-    workshop 8, session 2: amount 1
-    workshop 10, session 2: amount 25
-    workshop 12, session 1: amount 14
-    workshop 12, session 2: amount 15
-
-    number of particpants of each workshop and session
-    workshop   1:  35,  35,
-    workshop   2:  14,  13,
-    workshop   3:  25,  25,
-    workshop   4:  43,  43,
-    workshop   5:  32,  32,
-    workshop   6:  33,  33,
-    workshop   7:  29,  29,
-    workshop   8:  31,  31,
-    workshop   9:  35,  35,
-    workshop  10:  25,  25,
-    workshop  11:  25,  25,
-    workshop  12:  34,  35,
-    Model has been successfully processed
 
 When inspecting the actual solutions, output3.txt and output4.txt it
 turns out that the solution of case 3 and case 4 are in fact identical!!
