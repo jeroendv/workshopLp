@@ -15,6 +15,8 @@ number of eliminated constraints may seem marginal.
 
 ## The pre-processing step
 
+### case1.sh
+
 case1.dat describes a rather normal situation where all cost parameters 
 related to model.9 are nonzero.
 
@@ -42,11 +44,36 @@ following model stats:
 Notice how the pre-process step reduces the model from 14152 constraints 
 and 8724 variables to 2225 constraints and 2213 variables.
 
+### case2.sh
 case2.dat describes the same problem but now all but the overbooking 
 costs are set to zero.
 
     param ReserveChoiceCost  := 0;
     param UnbalancedLoadCost := 0;
     param OverbookingCost 	 := 1;
+
+This will have the effect that the model will minimize the total number 
+of people that are overbooked. This also means that constraints intended 
+to compute derived results that are now irrelevant are no longer needed.
+But the pre-process step might fail to automatically eliminate those.
+
+Indeed running the same model on case2.dat gives:
+
+  $ bash case2.sh
+    ...
+    Model has been successfully generated
+    GLPK Integer Optimizer, v4.45
+    14152 rows, 8724 columns, 41322 non-zeros
+    8664 integer variables, all of which are binary
+    ...
+    Preprocessing...
+    2225 rows, 2213 columns, 8782 non-zeros
+    2166 integer variables, all of which are binary
+    ...
+
+Note how the problem has the same number of constraints and variables 
+both before and after the pre-processing. 
+
+
 
  vim: fo=awqn
