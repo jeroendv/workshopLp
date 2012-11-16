@@ -1,12 +1,12 @@
 # vim: syntax=bash
 
-# problem file with all non-zero costs
+# problem file with only a overbooking nonzero cost
 #
 # model version: 9
 
 data;
-param ReserveChoiceCost  := 1;
-param UnbalancedLoadCost := 1;
+param ReserveChoiceCost  := 0;
+param UnbalancedLoadCost := 0;
 param OverbookingCost 	 := 1;
 
 param NbPeople 		  :=361;
