@@ -157,19 +157,27 @@ one in case 2. The number of overbookings that they both minimize is the
 same though. So they are both optimal solutions from the solvers point 
 of view.
 
+
 ## Conclusion
 
-
 A high level language like gnu MathPog allows easy modelling of a 
-problem. Allowing the user to focus on the model itself without being 
-affected by practical considerations. A pre-process step then has the 
-task of transforming that easy to understand human model into a model 
-that is easy to solve by a computer.
+problem making abstraction of practical considerations related to 
+solving the constructed model. A pre-process step has the task of 
+transforming that easy to understand human model into a model that is 
+easy to solve by a computer. Removing the burden of optimization from 
+the modeller.
+
+The pre-process step is very important. It is capable of significant 
+problem reductions using algebraic reduction techniques. It might 
+however fall short though in some situations failing to detect certain 
+optimization opportunities which are obvious to the user from it high 
+level perspective, but not to the pre-processor form an algebraic 
+perspective. 
 
 The relation between model constraints and computation time is very 
-complex. Few constraints might be the origin of most computation time.  
-
-
+complex. As illustrated few constraints might be the origin of most 
+computation time. Hence there might be an acceptable trade-of between 
+manual optimizations and increased model complexity.
 
 
  vim: fo=awqn
