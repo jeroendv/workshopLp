@@ -9,11 +9,14 @@ reducing the number of constraints and variables. There are however
 cases where it falls short. Careful crafting of constraint predicates 
 allows the generate of constraints only in certain conditions.  Enabling 
 the explicit elimination of constraints in certain situations where the 
-pre-process step fails. This can potentially have a significant effect 
-on the required computational time to solve the problem even if the 
-number of eliminated constraints may seem marginal.
+pre-process step should fail to do so automatically. This can 
+potentially have a significant effect on the required computational time 
+to solve the problem even if the number of eliminated constraints may 
+seem marginal.
 
-## The pre-processing step
+
+
+## A failing pre-processing step
 
 ### case1.sh
 
@@ -24,9 +27,11 @@ related to model.9 are nonzero.
     param UnbalancedLoadCost := 1;
     param OverbookingCost 	 := 1;
 
+case1.mod is a model equal to model 9 but with different output 
+processing.
+
 Note that when invoking the solver it will report some stats of the 
-created model and do so again after pre-processing. Running the problem 
-through  case1.mod which is based on model 9 then results in the 
+created model and do so again after pre-processing. This results in the 
 following model stats:
 
     $ bash case1.sh
@@ -75,10 +80,10 @@ both before and after the pre-processing as in case 1!
 
 The model that we are using however includes some constraints 
 responsible for computing the SessionLoadDifference variable, which is a 
-derived results that is no longer needed because the cost associated 
-with an unbalance is set to zero in this particular case. Hence we can 
-conclude that the pre-process step failed to eliminate those 
-constraints.
+derived results used for session load balancing. It is however no longer 
+needed because the cost associated with an unbalance is set to zero in 
+this particular case.  Hence these constraints aren't needed but the 
+pre-process step failed to eliminate them.
 
 
 ## Constraint predicates
