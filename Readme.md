@@ -62,7 +62,13 @@ solve the model files developed in this project.
 
 ???
 
-[glpk]: http://www.gnu.org/software/glpk/
+# Case studies
+
+See the test directory. Each test should have a Readme file explaining
+the case.
+
+
+[glpk]: http://www.gnu.org/software/glpk/ "Gnu Linear Programming Kit"
   
   
 
