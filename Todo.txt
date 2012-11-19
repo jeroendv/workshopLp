@@ -79,3 +79,10 @@
 # todo: test/Readme.md should be generated automatically
 
 # todo: test/Readme.md should link to respective readme files
+
+# todo: put makefile in test3
+
+# todo: fix doc of case.sh files under test
+# Don't mention run case x when the file name is case x.
+# It's to redundant and containts no usefull info.
+# perhaps it would be better to describe the case a bit?!
