@@ -156,10 +156,10 @@ AssignedPeople{w in W, s in S}:
 Overbookings{w in W, s in S}:
     overbooked[w,s] >= -Capacity[w,s] + assigned[w,s];
 
-SessionLoadDifferencesAbs1{w in W}:
+SessionLoadDifferencesAbs1{w in W:UnbalancedLoadCost > 0}:
     SessionLoadDifference[w] >= assigned[w,1]-assigned[w,2];
 
-SessionLoadDifferencesAbs2{w in W}:
+SessionLoadDifferencesAbs2{w in W: UnbalancedLoadCost > 0}:
     SessionLoadDifference[w] >= assigned[w,2]-assigned[w,1];
 
 #==============================================================================
