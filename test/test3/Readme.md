@@ -164,14 +164,13 @@ A high level language like gnu MathPog allows easy modelling of a
 problem making abstraction of practical considerations related to 
 solving the constructed model. A pre-process step has the task of 
 transforming that easy to understand human model into a model that is 
-easy to solve by a computer. Removing the burden of optimization from 
-the modeller.
+easy to solve by a computer. 
 
 The pre-process step is very important. It is capable of significant 
 problem reductions using algebraic reduction techniques. It might 
-however fall short though in some situations failing to detect certain 
-optimization opportunities which are obvious to the user from it high 
-level perspective, but not to the pre-processor form an algebraic 
+however fall short in some situations failing to detect certain 
+optimization opportunities which are obvious to the user from his high 
+level perspective, but not to the pre-processor from an algebraic 
 perspective. 
 
 The relation between model constraints and computation time is very 
