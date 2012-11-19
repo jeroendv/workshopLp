@@ -75,3 +75,7 @@
 # balancing. Hence the model will have unneeded constraints which will
 # unnecessarily slow down the solver.
 
+
+# todo: test/Readme.md should be generated automatically
+
+# todo: test/Readme.md should link to respective readme files
