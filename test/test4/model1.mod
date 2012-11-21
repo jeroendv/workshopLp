@@ -228,21 +228,6 @@ printf: 'Nb of overbooking: %i\n', OverbookedTotal;
 printf: 'nB of unassignments: %i\n',sum{p in P: NbUnassignments[p] >0}1;
 
 
-printf: '\n\n';
-printf: 'unassignments\n';
-printf: '--------------------------\n' ;
-for{p in P: NbUnassignments[p] > 0}{
-  printf: 'person %i has %i  unassigned choices\n',p,NbUnassignments[p];
-}
-
-# print unassigned primary choices
-printf: '\n\n';
-printf: 'unassigned primary choices, total: %i\n', UnassignedFirstChoiceTotal;
-printf: '--------------------------\n' ;
-for {p in P,w in W: sum{s in S} assign[w,s,p] = 0 && preferred[w,p] = 1 } {
-	printf: 'person %i, workshop %i\n', p, w ;
-}
-
 # print overbooked sessions
 printf: '\n\n';
 printf: 'overbooked sessions, total: %i \n', OverbookedTotal;
@@ -260,6 +245,21 @@ for {w in W}{
     printf: ' %2i/%2i,', assigned[w,s],Capacity[w,s];
   }
   printf: '\n';
+}
+
+printf: '\n\n';
+printf: 'unassignments\n';
+printf: '--------------------------\n' ;
+for{p in P: NbUnassignments[p] > 0}{
+  printf: 'person %i has %i  unassigned choices\n',p,NbUnassignments[p];
+}
+
+# print unassigned primary choices
+printf: '\n\n';
+printf: 'unassigned primary choices, total: %i\n', UnassignedFirstChoiceTotal;
+printf: '--------------------------\n' ;
+for {p in P,w in W: sum{s in S} assign[w,s,p] = 0 && preferred[w,p] = 1 } {
+	printf: 'person %i, workshop %i\n', p, w ;
 }
 
 
