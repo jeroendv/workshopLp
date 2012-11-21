@@ -1,38 +1,12 @@
-#File: model.11.UnassignedChoices
-#Author: Jeroen De Vlieger (jeroen.devlieger@gmail.com)
-#Creation Date: 2012/09/21
+#File: model2
+#Author: Jeroen De Vlieger
+#Creation Date: 2012/11/21
 #
 # gnu MathProg model
+# 
+# slightly modified version of model1.mod that incorporates the idea of 
+# workshops that can't be overbooked.
 #
-## The problem
-#
-# Find an optimal distribution of people over a number of workshops.
-#
-# Each workshop has a limited capacity but can organized multiple times over
-# the span of several sessions. All the participants provided a selection of
-# workshops that they would like to follow. Each participant is also asked to
-# select some additional workshops to create some leeway to find an optimal
-# distribution.
-#
-# This file contains the mathematical description of the model of the
-# aforementioned problem. The actual data of the problem is provided in a
-# separate data file.
-#
-#
-## History
-# based on model.10 but extended to allow a person to not be assigned.
-#
-# This model should *never* be infeasible as every constraint has a slack 
-# variable that is somehow minimized.
-#
-#
-# By having a very hight cost associated with unassigned people, will results 
-# in the model to disfavor that option unless it's really necessary. For 
-# example when a person has more preferences than there are sessions. The model 
-# will it that case not fail but simply assign that person to only NbSession 
-# workshops.
-#
-
 
 #==============================================================================
 # the problem has 3 sets:
@@ -80,6 +54,10 @@ param OverbookingCost, default 1;
 param UnbalancedLoadCost, default 0;
 param UnassignedCost, default 10000;
 
+
+# set overbooking behaviour of a workshop.
+#   CanNotBeOverbooked(w) = 1 if workshop w can't be overbooked
+#   CanNotBeOverbooked(w) = 0 if workshop w can be overbooked (default)
 param CanNotBeOverbooked {w in W} binary, default 0;
 
 
@@ -187,6 +165,7 @@ _SessionLoadDifference2{w in W, s in 1..(NbSessions-1)}:
 _TotalSessionLoadDifference{w in W}:
     TotalSessionLoadDifference[w] = sum{s in S} SessionLoadDifference[w,s];
 
+# force the CanNotBeOverbooked parameter
 _CanNotBeOverbooked{w in W,s in S}:
     if CanNotBeOverbooked[w] == 1 then overbooked[w,s] = 0;
 
